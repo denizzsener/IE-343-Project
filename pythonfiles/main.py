@@ -1,16 +1,13 @@
 from csv_parser import CSVParser
 from knapsack import Knapsack
 from tsp import TSP
-import os
 import time
 
 def main():
 
     start = time.time()
 
-    base = os.path.dirname(os.getcwd())
-
-    songs = CSVParser.parse_songs(base + "/data/songs_data_frank_ocean.csv")
+    songs = CSVParser.parse_songs("data/songs_data_frank_ocean.csv")
 
     max_duration = 200  # Replace this value with your desired maximum duration
     selected_songs = Knapsack.knapsack(songs, max_duration)
@@ -21,7 +18,7 @@ def main():
         print(f"Song: {song.name} Popularity - {song.popularity}, Duration - {song.duration}")
     print()
 
-    file_name = base + "/data/deniz_asli_cities.csv"
+    file_name = "data/deniz_asli_cities.csv"
 
     cities = CSVParser.parse_cities(file_name)
     result = TSP.nearest_neighbor_tsp(cities)
